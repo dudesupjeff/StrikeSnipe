@@ -1,9 +1,10 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+# all da base settings...self explanatory and im not writing out a description for each one, if you dont know what it does then dont change it :D
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file='.env', env_file_encoding='utf-8', extra='ignore', case_sensitive=False)
     csfloat_api_key: str = ''
-    discord_webhook_url: str = ''
+    discord_webhook_url: str = '' 
 
     max_buy_price_usd: float = 5.00
     min_buy_price_usd: float = 0.05
@@ -14,7 +15,7 @@ class Settings(BaseSettings):
     max_alerts_per_hour: int = 30
     seller_fee_rate: float = 0.02
     exit_safety_usd: float = 0.02
-    exclude_souvenirs: bool = True
+    exclude_souvenirs: bool = True #should be getten overridden in .env/dashboard config...been having some issues with it not working still even though it should be overridden so if a problem arrises lmk
     exclude_stickered: bool = False
     include_normal: bool = True
     include_stattrak: bool = True
@@ -49,7 +50,7 @@ class Settings(BaseSettings):
     max_scan_price_cents: int = 0
     database_path: str = 'data/strikesnipe.db'
     user_agent: str = 'StrikeSnipe/3.1 (manual-alert-only)'
-
+#all the settings are loaded into a global setting so they can be accessed anywhere in the app without having to pass them around
 settings = Settings()
 settings.max_buy_price_usd=max(0.01,float(settings.max_buy_price_usd))
 settings.min_buy_price_usd=max(0.00,min(float(settings.min_buy_price_usd),settings.max_buy_price_usd))

@@ -59,6 +59,13 @@ WEAR_TIER_FLOAT_RANGE = {
 }
 _WEAR_RE = re.compile(r'\((Factory New|Minimal Wear|Field-Tested|Well-Worn|Battle-Scarred)\)\s*$')
 
+# 
+#
+#
+# A new section will eventually be here that better evaluates listings with a float on the near max or min of float cap ranges
+#
+#
+#
 def wear_tier_from_name(name):
     match = _WEAR_RE.search(str(name or ''))
     if not match:
@@ -254,7 +261,7 @@ def evaluate(listing, comps, observed, sales_rows, same_seed, float_samples, liq
         net / (1.0 + settings.min_roi_percent / 100.0),
     )
 
-    confidence = (
+    confidence = ( # adjust min confidence in configs/dashboard or .env not here
         15
         + min(40, recent_sales_count * 8)
         + min(15, max(0, len(sale_prices) - recent_sales_count) * 3)
@@ -262,9 +269,9 @@ def evaluate(listing, comps, observed, sales_rows, same_seed, float_samples, liq
         + min(10, len(obs) // 25)
     )
     if kind in ('sticker', 'case', 'charm'):
-        confidence += 5
+        confidence += 5 # means it is a bit more stable and likely to stay at a similar price so it gets a reward of +5
     if recent_sales_count >= settings.min_recent_sales_for_strong_confidence:
-        confidence += 5
+        confidence += 5 # just means it is a higher chance of being a good selling item so it gets a reward of +5
 
     try:
         if scm_volume is not None and int(scm_volume) >= 20:
@@ -291,7 +298,7 @@ def evaluate(listing, comps, observed, sales_rows, same_seed, float_samples, liq
         reason = 'above max buy price'
     elif listing.get('type') == 'auction':
         mins = auction_minutes(listing)
-        if mins is not None and not (settings.auction_min_minutes <= mins <= settings.auction_max_minutes):
+        if mins is not None and not (settings.auction_min_minutes <= mins <= settings.auction_max_minutes): # gives brief reasoning for why it isn't good, ideally this section will be expanded and revamped...a later day
             reason = 'auction outside time window'
         elif profit < settings.min_profit_usd * 100:
             reason = 'profit below threshold'

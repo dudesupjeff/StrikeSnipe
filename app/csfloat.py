@@ -10,6 +10,9 @@ BASE = 'https://csfloat.com/api/v1'
 
 RATE_LIMIT_FLOOR_SECONDS = 1.5     
 RATE_LIMIT_MAX_BACKOFF_SECONDS = 120.0  
+
+# csfloat can send out a few different headers to signal being rate limited so this just checks for some of the common ones I found and AI suggested...
+# if you still proceed to be getting rate limited then they likely changed the headers again and you can add them to the list below or publish an issue on github and ill add them in for you. 
 _REMAINING_HEADERS = ('x-ratelimit-remaining', 'x-rate-limit-remaining', 'ratelimit-remaining')
 _LIMIT_HEADERS = ('x-ratelimit-limit', 'x-rate-limit-limit', 'ratelimit-limit')
 _RESET_HEADERS = ('x-ratelimit-reset', 'x-rate-limit-reset', 'ratelimit-reset')

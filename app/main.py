@@ -92,6 +92,10 @@ async def status():
     finally:
         await db.close()
 
+
+# All these parts are the endpoints for the API and you will see them pop up in your terminal when you run them. They generally will look something like what is bellow:
+    # "POST /api/data/clear-sales HTTP/1.1" 200 OK
+
 @app.post('/api/scanner/start')
 async def start():
     started = await scanner.start()

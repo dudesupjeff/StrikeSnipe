@@ -32,7 +32,7 @@ class Scanner:
         self.recent_candidates = []
 
     @staticmethod
-    def _fresh_stats():
+    def _fresh_stats(): #this will be what is displayed on the dash at the start for fresh stats
         return {
             'seen': 0, 'valued': 0, 'opportunities': 0, 'alerts_sent': 0,
             'threshold_rejects': 0, 'history_fetches': 0, 'comparable_lookups': 0,

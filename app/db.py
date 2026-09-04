@@ -6,7 +6,7 @@ import time
 from datetime import datetime
 from .config import settings
 
-
+# Database schema...no touchy cause it creates the tables if they dont exist yet (aka first run/new db) and set up indexes... if you touch it breaks
 SCHEMA = '''
 CREATE TABLE IF NOT EXISTS listings(
  id TEXT PRIMARY KEY, market_hash_name TEXT, listing_type TEXT, state TEXT,
@@ -49,7 +49,7 @@ def is_souvenir(item, name):
 
 def is_stickered(item):
     return bool(item.get('stickers'))
-
+#the process the responses go through when saved into the db and how it inserts the data. Ideally don't change anything
 async def upsert_listings(db, items):
     now = time.time()
     stored = 0
@@ -91,7 +91,7 @@ async def upsert_listings(db, items):
         stored += 1
     await db.commit()
     return stored
-
+# most of the async functions are used to query the db for specific data and return or place it...this is a weird mix of my code and claude telling me im stupid and its better a certain way  
 async def active_comparables(db, name, exclude_id=None, days=3, limit=100):
     cutoff = time.time() - days * 86400
     cur = await db.execute('''SELECT price_cents FROM listings

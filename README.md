@@ -1,6 +1,6 @@
 # StrikeSnipe - A pretty nice program :3
 
-StrikeSnipe monitors CSFloat listings and sends Discord alerts when an item appears to be priced below its estimated resale value. It is designed to be ONLY an alerting tool only: it does not automate any activities...
+StrikeSnipe monitors CSFloat listings and sends Discord alerts when an item appears to be priced below its estimated resale value. It is designed to ONLY an alerting tool, and it does not automate any activities...
 
 ## Supported categories
 - Skins: Compares potential listings with past sales, similar comparable listings, and provides a rough estimate of value.
@@ -14,9 +14,10 @@ StrikeSnipe monitors CSFloat listings and sends Discord alerts when an item appe
 - Scan Once: Scans a single time, niche use and mainly used in testing and or debugging.
 - Auctions only: toggles between only evaluating auctions or BINS and auctions. 
 
-- Clear Listings: Clears scanned unique listings
-- Clear Sales: Clears the scanned past sales for potential canidates
-- FULL RESET: This will fully reset the scanner (excluding configs) and wips cached data
+Stop the scanner first before you use any of the following 3 features.
+- Clear Listings: Clears scanned unique listings 
+- Clear Sales: Clears the scanned past sales for potential canidates 
+- FULL RESET: This will fully reset the scanner (excluding configs) and wips cached data 
 
 - Test CSFloat: Tests sending a request through API to CSfloat.com
 - Test Discord: Tests sending a message through your discord webhook.
